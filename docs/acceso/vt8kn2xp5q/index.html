@@ -6,26 +6,252 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Твоят достъп · Наръчник по Арт Терапия</title>
 <style>
-  html, body { margin:0; background:#FAF7F2; color:#2B2522; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
-  .wrap { max-width:560px; margin:0 auto; padding:64px 20px; text-align:center; }
-  .badge { display:inline-block; font-size:12px; letter-spacing:.08em; text-transform:uppercase; background:#EFE6DA; padding:6px 12px; border-radius:99px; }
-  h1 { font-size:28px; line-height:1.2; margin:18px 0 10px; }
-  p { font-size:17px; line-height:1.55; color:#5B514B; }
-  .card { background:#fff; border:1px solid #EAE0D5; border-radius:16px; padding:24px 20px; margin-top:28px; }
-  .dot { display:inline-block; width:10px; height:10px; border-radius:50%; background:#6b4fa0; margin-right:8px; animation:p 1.6s infinite; }
-  @keyframes p { 50% { opacity:.3; } }
-  @media (prefers-reduced-motion: reduce) { .dot { animation:none; } }
+:root {
+  --bg: #FFF8F4; --bg2: #F6ECFF; --a1: #D9C9F7; --a1d: #B89FE0;
+  --a2: #F3B8D2; --a2d: #E98B7A; --title: #4E4036; --body: #6F6258;
+  --body2: #8A7A70; --card: #FFFFFF; --green: #5BAA7A;
+  --grad: linear-gradient(135deg, #D9C9F7, #F3B8D2);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); color: var(--body); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.wrap { max-width: 640px; margin: 0 auto; padding: 48px 20px 80px; }
+
+/* Hero */
+.hero { text-align: center; margin-bottom: 40px; }
+.badge-top { display: inline-block; background: var(--grad); color: var(--title); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 6px 16px; border-radius: 99px; margin-bottom: 20px; }
+.hero h1 { font-size: 26px; line-height: 1.25; color: var(--title); margin-bottom: 10px; font-weight: 700; }
+.hero p { font-size: 16px; color: var(--body2); line-height: 1.55; }
+
+/* Stats */
+.stats { display: flex; gap: 12px; justify-content: center; margin: 24px 0 32px; flex-wrap: wrap; }
+.stat { background: var(--card); border: 1.5px solid var(--a1); border-radius: 12px; padding: 14px 20px; text-align: center; min-width: 120px; }
+.stat .num { font-size: 24px; font-weight: 700; color: var(--title); }
+.stat .lbl { font-size: 11px; color: var(--body2); text-transform: uppercase; letter-spacing: .05em; margin-top: 2px; }
+
+/* Section header */
+.sec-header { display: flex; align-items: center; gap: 8px; margin: 32px 0 16px; }
+.sec-header h2 { font-size: 17px; color: var(--title); font-weight: 700; }
+.sec-line { flex: 1; height: 1.5px; background: var(--a1); }
+
+/* Core card */
+.core-card {
+  background: var(--card); border: 2px solid var(--a1d); border-radius: 16px;
+  padding: 24px 20px; margin-bottom: 24px; position: relative; overflow: hidden;
+}
+.core-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--grad); }
+.core-card .label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--a1d); margin-bottom: 8px; }
+.core-card h3 { font-size: 19px; color: var(--title); font-weight: 700; margin-bottom: 6px; }
+.core-card .desc { font-size: 14px; color: var(--body2); line-height: 1.55; margin-bottom: 16px; }
+.core-card .meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+.core-card .pill { font-size: 11px; background: var(--bg2); border: 1px solid var(--a1); border-radius: 99px; padding: 4px 12px; color: var(--body); }
+
+/* Bonus list */
+.bonus-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.bonus-card {
+  background: var(--card); border: 1.5px solid var(--a1); border-radius: 12px;
+  padding: 16px 18px; display: flex; align-items: center; gap: 14px;
+}
+.bonus-card .icon { font-size: 24px; flex-shrink: 0; }
+.bonus-card .info { flex: 1; }
+.bonus-card .info .label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--a1d); margin-bottom: 2px; }
+.bonus-card .info h4 { font-size: 14px; color: var(--title); font-weight: 600; margin-bottom: 2px; }
+.bonus-card .info p { font-size: 12px; color: var(--body2); }
+
+/* Download button */
+.btn-dl {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--grad); color: var(--title);
+  font-size: 13px; font-weight: 700; padding: 10px 18px;
+  border-radius: 10px; text-decoration: none; border: none; cursor: pointer;
+  flex-shrink: 0; white-space: nowrap;
+  transition: opacity .15s;
+}
+.btn-dl:hover { opacity: .85; }
+.btn-dl svg { width: 15px; height: 15px; flex-shrink: 0; }
+.btn-dl-lg {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; background: var(--grad); color: var(--title);
+  font-size: 15px; font-weight: 700; padding: 14px 20px;
+  border-radius: 12px; text-decoration: none; border: none; cursor: pointer;
+  transition: opacity .15s;
+}
+.btn-dl-lg:hover { opacity: .85; }
+.btn-dl-lg svg { width: 18px; height: 18px; }
+
+/* Steps */
+.steps { background: var(--bg2); border-radius: 12px; padding: 20px; margin-bottom: 32px; }
+.steps h3 { font-size: 15px; color: var(--title); margin-bottom: 14px; font-weight: 700; }
+.step-row { display: flex; gap: 12px; margin-bottom: 10px; align-items: flex-start; }
+.step-row:last-child { margin-bottom: 0; }
+.step-num { flex-shrink: 0; width: 26px; height: 26px; background: var(--a1d); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; margin-top: 2px; }
+.step-row p { font-size: 13px; color: var(--body); line-height: 1.55; }
+
+/* Footer */
+.footer-note { text-align: center; font-size: 13px; color: var(--body2); line-height: 1.6; padding: 20px 0; }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <span class="badge">Покупката е потвърдена</span>
-    <h1>Наръчник по Арт Терапия — 100+ Упражнения + 6 Безплатни Бонуса</h1>
-    <p>Благодарим! Подготвяме твоите материали. Тази страница ще се актуализира с всичките ти файлове.</p>
-    <div class="card">
-      <p><span class="dot"></span><strong>Запази тази страница</strong></p>
-      <p>Това е твоят доживотен достъп. Върни се след няколко часа и ще намериш продукта и всички бонуси.</p>
+<div class="wrap">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="badge-top">✅ Покупката е потвърдена</div>
+    <h1>Наръчник по Арт Терапия<br>100+ Упражнения + 6 Безплатни Бонуса</h1>
+    <p>Благодарим! Всичките ти материали са готови за изтегляне по-долу.</p>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat"><div class="num">100+</div><div class="lbl">Упражнения</div></div>
+    <div class="stat"><div class="num">6</div><div class="lbl">Безплатни бонуса</div></div>
+    <div class="stat"><div class="num">∞</div><div class="lbl">Доживотен достъп</div></div>
+  </div>
+
+  <!-- Core product -->
+  <div class="sec-header"><div class="sec-line"></div><h2>🎨 Основен продукт</h2><div class="sec-line"></div></div>
+
+  <div class="core-card">
+    <div class="label">Основен наръчник</div>
+    <h3>Наръчник по Арт Терапия</h3>
+    <p class="desc">100 насочени упражнения за себепознание, изцеление и вътрешен растеж, организирани в 10 теми. PDF, разпечатай и използвай многократно.</p>
+    <div class="meta">
+      <span class="pill">📖 100 упражнения</span>
+      <span class="pill">🎨 10 теми</span>
+      <span class="pill">🖨️ PDF · Разпечатай</span>
+      <span class="pill">📐 Формат А4</span>
+    </div>
+    <a class="btn-dl-lg" href="../../archivos/narachnik-art-terapia-100.pdf" download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Изтегли Наръчника (PDF)
+    </a>
+  </div>
+
+  <!-- Bonuses -->
+  <div class="sec-header"><div class="sec-line"></div><h2>🎁 Твоите безплатни бонуси</h2><div class="sec-line"></div></div>
+
+  <div class="bonus-list">
+    <div class="bonus-card">
+      <div class="icon">🖌️</div>
+      <div class="info">
+        <div class="label">Бонус 1</div>
+        <h4>17 Допълнителни Арт Терапевтични Упражнения</h4>
+        <p>Нови техники: печат, монотипия, рисуване с дъх и още</p>
+      </div>
+      <a class="btn-dl" href="../../archivos/bonus-17-uprazhneniya.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        PDF
+      </a>
+    </div>
+
+    <div class="bonus-card">
+      <div class="icon">⭐</div>
+      <div class="info">
+        <div class="label">Бонус 2</div>
+        <h4>20 Упражнения за По-Висока Самооценка</h4>
+        <p>Изкуство в служба на самолюбовта и увереността</p>
+      </div>
+      <a class="btn-dl" href="../../archivos/bonus-20-samoocenka.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        PDF
+      </a>
+    </div>
+
+    <div class="bonus-card">
+      <div class="icon">💭</div>
+      <div class="info">
+        <div class="label">Бонус 3</div>
+        <h4>50 Въпроса за Повече Яснота и Смелост</h4>
+        <p>Карти с импулси за по-съзнателно справяне с тревожността</p>
+      </div>
+      <a class="btn-dl" href="../../archivos/bonus-50-vaprosa.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        PDF
+      </a>
+    </div>
+
+    <div class="bonus-card">
+      <div class="icon">🧘</div>
+      <div class="info">
+        <div class="label">Бонус 4</div>
+        <h4>Импулси за Разрешаване на Емоционални Блокажи</h4>
+        <p>5 техники за освобождаване на заседнала енергия</p>
+      </div>
+      <a class="btn-dl" href="../../archivos/bonus-emotsionalni-blokazi.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        PDF
+      </a>
+    </div>
+
+    <div class="bonus-card">
+      <div class="icon">📚</div>
+      <div class="info">
+        <div class="label">Бонус 5</div>
+        <h4>Наръчник за Прилагане и Придружаване</h4>
+        <p>За специалисти, прилагащи арт терапия в практиката</p>
+      </div>
+      <a class="btn-dl" href="../../archivos/bonus-prilagane.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        PDF
+      </a>
+    </div>
+
+    <div class="bonus-card">
+      <div class="icon">💪</div>
+      <div class="info">
+        <div class="label">Бонус 6</div>
+        <h4>Укрепи Самоувереността Си — Карти с Импулси</h4>
+        <p>40 укрепващи послания за повече самоувереност</p>
+      </div>
+      <a class="btn-dl" href="../../archivos/bonus-samouverenosta.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        PDF
+      </a>
     </div>
   </div>
+
+  <!-- Edition 2 -->
+  <div class="sec-header"><div class="sec-line"></div><h2>✨ Специален подарък</h2><div class="sec-line"></div></div>
+
+  <div class="core-card" style="border-color: var(--a2);">
+    <div class="label" style="color: var(--a2d);">Издание 2 — Изцяло ново</div>
+    <h3>100 Нови Арт Терапевтични Дейности</h3>
+    <p class="desc">Изцяло ново допълнение към Наръчника с 100 допълнителни дейности в 10 нови теми: природни стихии, градски пейзажи, животинска сила, нощни мечти и още.</p>
+    <div class="meta">
+      <span class="pill">📖 100 нови дейности</span>
+      <span class="pill">🌟 10 нови теми</span>
+      <span class="pill">🎁 Безплатен бонус</span>
+    </div>
+    <a class="btn-dl-lg" href="../../archivos/bonus-izdanie2-100.pdf" download style="background: linear-gradient(135deg, #F3B8D2, #D9C9F7);">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Изтегли Издание 2 (PDF)
+    </a>
+  </div>
+
+  <!-- How to start -->
+  <div class="sec-header"><div class="sec-line"></div><h2>🚀 По кой начин да започнеш</h2><div class="sec-line"></div></div>
+
+  <div class="steps">
+    <h3>3 лесни стъпки</h3>
+    <div class="step-row">
+      <div class="step-num">1</div>
+      <p><strong>Изтегли Наръчника</strong> — натисни бутона за изтегляне по-горе. PDF ще се запази на твоето устройство.</p>
+    </div>
+    <div class="step-row">
+      <div class="step-num">2</div>
+      <p><strong>Отвори и разпечатай</strong> — или работи директно на таблет. Препоръчваме разпечатване за по-добро преживяване.</p>
+    </div>
+    <div class="step-row">
+      <div class="step-num">3</div>
+      <p><strong>Избери едно упражнение</strong> — намери темата, която ти говори, и започни. Нямаш нужда от художествени умения.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-note">
+    <p>Запази тази страница в отметките — тя е твоят доживотен достъп.</p>
+    <p style="margin-top:8px;">Следваща стъпка: избери едно упражнение и го направи днес. 🎨</p>
+  </div>
+
+</div>
 </body>
 </html>
